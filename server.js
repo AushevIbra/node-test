@@ -9,7 +9,7 @@ const path = require('path');
 const PORT = process.env.PORT || 5000
 
 app.use(express.static(__dirname));
-app.use(express.static(__dirname + '/build'));
+app.use(express.static(path.join(__dirname, 'dist1')));
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
@@ -64,9 +64,9 @@ app.get('/api', function(req, res){
 })
 
 app.get('/', function(req,res){
-    res.sendFile(__dirname + "/build/index.html");
+    res.sendFile(path.join(__dirname, 'dist1', 'index.html'));
 })
 
 app.listen(PORT, function(){
-    console.log(path.join(__dirname, '../build', 'index.html'), PORT)
+    console.log('server on', PORT)
 })
